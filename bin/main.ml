@@ -12,4 +12,9 @@ let () =
   let code = Utils.read_file filename in
   let tokens = Taulang.Lexer.lex (chars_of_string code) in
   let prog = Parser.parse tokens in
-  print_endline (Ast.string_of_ast prog)
+  let result = Evaluate.evaluate prog in
+  match result with
+  | Evaluate.VNumber n -> Printf.printf "%f\n" n
+  | Evaluate.VString s -> Printf.printf "%s\n" s
+  | Evaluate.VBoolean b -> Printf.printf "%b\n" b
+  | Evaluate.VNil -> Printf.printf "nil\n"
