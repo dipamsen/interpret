@@ -55,3 +55,9 @@ and evaluate_binary op left right =
     | Ast.Eq -> VBoolean (l = r)
     | Ast.NotEq -> VBoolean (l <> r))
   | _ -> failwith "Cannot apply operator"
+
+let print_value = function
+  | VNumber n -> Printf.printf "%f\n" n
+  | VString s -> Printf.printf "%s\n" s
+  | VBoolean b -> Printf.printf "%b\n" b
+  | VNil -> Printf.printf "nil\n"
